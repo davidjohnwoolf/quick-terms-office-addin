@@ -1,0 +1,23 @@
+# Windows-specific files
+Thumbs.db
+*.DS_Store
+desktop.ini
+
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# IDE-specific files
+.idea/
+.vscode/
+*.suo
+
+# React-specific files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
