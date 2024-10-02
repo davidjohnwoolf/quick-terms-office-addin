@@ -6,10 +6,12 @@ const useClasses = makeStyles({
     background: tokens.colorNeutralBackground4Selected,
     display: "flex",
     flexDirection: "row",
+    align: "end",
     borderBottom: "1px #ccc solid",
-    marginBottom: tokens.spacingVerticalXXS,
+    position: "sticky",
+    top: "0",
   },
-  toggle: {
+  checkbox: {
     alignSelf: "center",
     color: "#888",
   },
@@ -27,10 +29,11 @@ const Header: React.FC<HeaderProps> = ({ onShowAll, showAll }) => {
   return (
     <header className={classes.header}>
       <Checkbox
+        aria-label="Show all definitions no matter the document selection"
         onChange={({ currentTarget }) => onShowAll(currentTarget.checked)}
         checked={showAll}
-        className={classes.toggle}
-        label="Show All"
+        className={classes.checkbox}
+        label="All"
       />
       <SearchBox placeholder="search definitions" appearance="filled-lighter" />
     </header>
