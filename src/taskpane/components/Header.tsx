@@ -1,37 +1,39 @@
 import * as React from "react";
-import { Image, tokens, makeStyles } from "@fluentui/react-components";
+import { Checkbox, makeStyles, SearchBox, tokens } from "@fluentui/react-components";
 
-export interface HeaderProps {
-  title: string;
-  logo: string;
-  message: string;
-}
-
-const useStyles = makeStyles({
-  welcome__header: {
+const useClasses = makeStyles({
+  header: {
+    background: tokens.colorNeutralBackground4Selected,
     display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    paddingBottom: "30px",
-    paddingTop: "100px",
-    backgroundColor: tokens.colorNeutralBackground3,
+    flexDirection: "row",
+    borderBottom: "1px #ccc solid",
+    marginBottom: tokens.spacingVerticalXXS,
   },
-  message: {
-    fontSize: tokens.fontSizeHero900,
-    fontWeight: tokens.fontWeightRegular,
-    fontColor: tokens.colorNeutralBackgroundStatic,
+  toggle: {
+    alignSelf: "center",
+    color: "#888",
   },
 });
 
-const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
-  const { title, logo, message } = props;
-  const styles = useStyles();
+interface HeaderProps {
+  onShowAll: (value: boolean) => void;
+  showAll: boolean;
+}
+
+/** Header component with search bar */
+const Header: React.FC<HeaderProps> = ({ onShowAll, showAll }) => {
+  const classes = useClasses();
 
   return (
-    <section className={styles.welcome__header}>
-      <Image width="90" height="90" src={logo} alt={title} />
-      <h1 className={styles.message}>{message}</h1>
-    </section>
+    <header className={classes.header}>
+      <Checkbox
+        onChange={({ currentTarget }) => onShowAll(currentTarget.checked)}
+        checked={showAll}
+        className={classes.toggle}
+        label="Show All"
+      />
+      <SearchBox placeholder="search definitions" appearance="filled-lighter" />
+    </header>
   );
 };
 
