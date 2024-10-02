@@ -18,15 +18,15 @@ interface DefinitionListProps {
 
 /** Lists definitions either in current paragraph or all shown */
 const DefinitionList: React.FC<DefinitionListProps> = ({ selection }) => {
-  const entries = useDefinitions(selection);
+  const definitions = useDefinitions(selection);
 
   const classes = useClasses();
 
   return (
     <section className={classes.container}>
-      {entries.map(({ id, key, value }) => (
-        <DefinitionListItem key={id} id={id} term={key} definition={value} />
-      ))}
+      {Object.entries(definitions).map(([name, { uniqueId, description }]) => {
+        return <DefinitionListItem key={uniqueId} uniqueId={uniqueId} name={name} description={description} />;
+      })}
     </section>
   );
 };

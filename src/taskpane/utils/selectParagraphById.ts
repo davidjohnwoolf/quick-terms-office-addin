@@ -5,7 +5,6 @@ export const selectParagraphById = async (uniqueLocalId: string) => {
   await Word.run(async (context) => {
     /* Select the paragraph by the id provided */
     context.document.getParagraphByUniqueLocalId(uniqueLocalId).select();
-
     await context.sync();
   });
 };

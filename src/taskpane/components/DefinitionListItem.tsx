@@ -3,15 +3,15 @@ import { Link, MessageBar, MessageBarBody, MessageBarTitle, Body1Stronger } from
 import { selectParagraphById } from "../utils/selectParagraphById";
 
 interface DefinitionListItemProps {
-  id: string;
-  term: string;
-  definition: string;
+  uniqueId: string;
+  name: string;
+  description: string;
 }
 
 /** Display a definition list */
-const DefinitionListItem: React.FC<DefinitionListItemProps> = ({ id, term, definition }) => {
+const DefinitionListItem: React.FC<DefinitionListItemProps> = ({ uniqueId, name, description }) => {
   const handleDefinitionClick = () => {
-    selectParagraphById(id);
+    selectParagraphById(uniqueId);
   };
 
   /**
@@ -23,10 +23,10 @@ const DefinitionListItem: React.FC<DefinitionListItemProps> = ({ id, term, defin
       <MessageBarBody>
         <MessageBarTitle>
           <Link onClick={handleDefinitionClick}>
-            <Body1Stronger>{term}</Body1Stronger>
+            <Body1Stronger>{name}</Body1Stronger>
           </Link>
         </MessageBarTitle>
-        {definition}
+        {description}
       </MessageBarBody>
     </MessageBar>
   );
