@@ -1,19 +1,14 @@
 import * as React from "react";
 import { Link, MessageBar, MessageBarBody, MessageBarTitle, Body1Stronger } from "@fluentui/react-components";
-import { selectParagraphById } from "../utils/selectParagraphById";
 
 interface DefinitionListItemProps {
-  uniqueId: string;
-  name: string;
+  onClick: () => void;
+  term: string;
   description: string;
 }
 
-/** Display a definition list */
-const DefinitionListItem: React.FC<DefinitionListItemProps> = ({ uniqueId, name, description }) => {
-  const handleDefinitionClick = () => {
-    selectParagraphById(uniqueId);
-  };
-
+/** Display a definition list item */
+const DefinitionListItem: React.FC<DefinitionListItemProps> = ({ term, description, onClick }) => {
   /**
    * @todo MessageBar bar may not be the most semantically correct choice
    * probably best to update when List components are out from FluentUI
@@ -22,8 +17,8 @@ const DefinitionListItem: React.FC<DefinitionListItemProps> = ({ uniqueId, name,
     <MessageBar icon={null}>
       <MessageBarBody>
         <MessageBarTitle>
-          <Link onClick={handleDefinitionClick}>
-            <Body1Stronger>{name}</Body1Stronger>
+          <Link onClick={onClick}>
+            <Body1Stronger>{term}</Body1Stronger>
           </Link>
         </MessageBarTitle>
         {description}

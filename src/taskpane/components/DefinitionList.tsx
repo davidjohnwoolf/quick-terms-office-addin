@@ -2,6 +2,7 @@ import * as React from "react";
 import DefinitionListItem from "./DefinitionListItem";
 import { useDefinitions } from "../hooks/useDefinitions";
 import { makeStyles, tokens } from "@fluentui/react-components";
+import { selectParagraphById } from "../utils/selectParagraphById";
 
 const useClasses = makeStyles({
   container: {
@@ -18,14 +19,21 @@ interface DefinitionListProps {
 
 /** Lists definitions either in current paragraph or all shown */
 const DefinitionList: React.FC<DefinitionListProps> = ({ selection }) => {
-  const definitions = useDefinitions(selection);
-
   const classes = useClasses();
+
+  const definitions = useDefinitions(selection);
 
   return (
     <section className={classes.container}>
-      {Object.entries(definitions).map(([name, { uniqueId, description }]) => {
-        return <DefinitionListItem key={uniqueId} uniqueId={uniqueId} name={name} description={description} />;
+      {definitions.map(({ uniqueLocalId, term, description }) => {
+        return (
+          <DefinitionListItem
+            key={uniqueLocalId}
+            term={term}
+            description={description}
+            onClick={() => selectParagraphById(uniqueLocalId)}
+          />
+        );
       })}
     </section>
   );

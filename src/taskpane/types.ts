@@ -1,3 +1,5 @@
-export interface ValueById<T extends string | number | boolean = string> {
-  [uniqueLocalId: string]: T;
-}
+/* global Word */
+export type Definition = Pick<Word.Paragraph, "uniqueLocalId" | "text"> & {
+  term: string;
+  description: string;
+};
