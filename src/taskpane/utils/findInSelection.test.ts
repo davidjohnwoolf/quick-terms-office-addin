@@ -23,13 +23,12 @@ describe("findInSelection", () => {
   });
 
   test("should return terms from given selection excluding overlapping", () => {
-    const selection =
-      "By reason of his or her Corporate Status, a party to (or participant in), on the merits of this current version of the Corporate Status Violation, as such may be amended from time to time, against all things actually and reasonably incurred by him or her, or on his or her behalf, in connection therewith. Indemnitee shall be deemed to have acted in good faith if Indemnitee action is based on the records or books of account of the Enterprise (as hereinafter defined), including financial statements, or a Violation on information supplied";
-    expect(findInSelection(terms, selection)).toEqual([
-      "Corporate Status Violation",
-      "Corporate Status",
-      "Enterprise",
-      "Violation",
-    ]);
+    const selectionOne =
+      "By reason of his or a party to (or participant in), on the merits of this current version of the Corporate Status Violation, as such may be amended from time to time, against all things actually and reasonably incurred by him or her, or on his or her behalf, in connection therewith. Indemnitee shall be deemed to have acted in good faith if Indemnitee action is based on the records or books of account of the Enterprise (as hereinafter defined), including financial statements on information supplied";
+
+    const selectionTwo =
+      "By reason of his or a party to (or participant in), on the merits of this current version of the Corporate Status, as such may be amended from time to time, against all things actually and reasonably incurred by him or her, or on his or her behalf, in connection therewith. Indemnitee shall be deemed to have acted in good faith if Indemnitee action is based on the records or books of account of the Enterprise (as hereinafter defined), including financial statements on information supplied Violation";
+    expect(findInSelection(terms, selectionOne)).toEqual(["Corporate Status Violation", "Enterprise"]);
+    expect(findInSelection(terms, selectionTwo)).toEqual(["Corporate Status", "Enterprise", "Violation"]);
   });
 });
