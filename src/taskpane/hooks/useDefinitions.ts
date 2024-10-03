@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { DefinitionsContext } from "../components/DefinitionsProvider";
+import { findInSelection } from "../utils/findInSelection";
 
 // This data structure might normally better with the id as key, as the case in the context state
 // however is this way on account of the name key, not the id, acting as the id for our purposes
@@ -25,7 +26,7 @@ export const useDefinitions = (selection: string): DefinitionProperties => {
   // Early return to avoid unneeded work of no selection prop
   if (!selection) return propsByName;
 
-  const selectionIncludes = Object.keys(propsByName).filter((name) => selection.indexOf(name) >= 0);
+  const selectionIncludes = findInSelection(Object.keys(propsByName), selection);
 
   // Return the propsByName only for selectionInclude terms (if any)
   return !selectionIncludes.length
