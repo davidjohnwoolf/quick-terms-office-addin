@@ -1,30 +1,18 @@
 import * as React from "react";
 import DefinitionListItem from "./DefinitionListItem";
 import { useDefinitions } from "../hooks/useDefinitions";
-import { makeStyles, tokens } from "@fluentui/react-components";
 import { selectParagraphById } from "../utils/selectParagraphById";
 
-const useClasses = makeStyles({
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    gap: tokens.spacingVerticalXXS,
-    padding: tokens.spacingVerticalXXS,
-  },
-});
-
 interface DefinitionListProps {
-  selection?: string;
+  showAll: boolean;
 }
 
 /** Lists definitions either in current paragraph or all shown */
-const DefinitionList: React.FC<DefinitionListProps> = ({ selection }) => {
-  const classes = useClasses();
-
-  const definitions = useDefinitions(selection);
+const DefinitionList: React.FC<DefinitionListProps> = ({ showAll }) => {
+  const definitions = useDefinitions(showAll);
 
   return (
-    <section className={classes.container}>
+    <section>
       {definitions.map(({ uniqueLocalId, term, description }) => {
         return (
           <DefinitionListItem
