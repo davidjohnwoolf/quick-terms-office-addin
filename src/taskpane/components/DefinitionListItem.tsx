@@ -6,7 +6,7 @@ const useStyles = makeStyles({
   container: {
     display: "flex",
     flexDirection: "column",
-    padding: tokens.spacingVerticalXXS,
+    margin: tokens.spacingVerticalXXS,
   },
 });
 
