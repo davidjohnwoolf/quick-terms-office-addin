@@ -9,11 +9,6 @@ export const findInSelection = (terms: string[], selection: string): string[] =>
   // then exclude each match from selection as you proceed through candidate terms
   return termsBySize.reduce(
     ([prevMatches, prevSelection], currentTerm) => {
-      // return prev if no matches found
-      if (!prevSelection.includes(currentTerm)) return [prevMatches, prevSelection];
-
-      // if term is included in selection, add to matches array and return with the selection
-      // selection after term replaced globally with regex to exclude all occurrences
       return prevSelection.includes(currentTerm)
         ? [[...prevMatches, currentTerm], prevSelection.replaceAll(currentTerm, "")]
         : [prevMatches, prevSelection];
