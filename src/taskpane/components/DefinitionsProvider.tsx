@@ -3,7 +3,6 @@ import Loading from "./Loading";
 import { useDefinitionState } from "../hooks/useDefinitionState";
 import { Definition } from "../types";
 
-/** @note the definitions context is readonly, with write access encapsulated by hooks in provider*/
 export const DefinitionsContext = React.createContext<Definition[]>([] as Definition[]);
 
 /** Provides a read-only context for document definitions */
