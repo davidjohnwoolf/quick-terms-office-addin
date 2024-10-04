@@ -1,14 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { DefinitionsContext } from "../components/DefinitionsProvider";
 import { findInSelection } from "../utils/findInSelection";
 import { Definition } from "../types";
-import { useSelectionChangeEffect } from "./useSelectionChangeEffect";
+import { useCurrentSelection } from "./useCurrentSelection";
 
 /** Returns definitions in paragraph form by name and filtered by selection if needed */
 export const useDefinitions = (showAll: boolean = false): Definition[] => {
   // this state is only used by the document API, should not depend on component events
-  const [currentSelection, setCurrentSelection] = useState<string>();
-  useSelectionChangeEffect(setCurrentSelection);
+
+  const currentSelection = useCurrentSelection();
 
   const definitions = useContext(DefinitionsContext);
 

@@ -1,13 +1,13 @@
 import * as React from "react";
 import Loading from "./Loading";
-import { useDefinitionState } from "../hooks/useDefinitionState";
+import { useDefinitionLoader } from "../hooks/useDefinitionLoader";
 import { Definition } from "../types";
 
 export const DefinitionsContext = React.createContext<Definition[]>([] as Definition[]);
 
 /** Provides a read-only context for document definitions */
 const DefinitionsProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const currentDefinitions = useDefinitionState();
+  const currentDefinitions = useDefinitionLoader();
 
   if (!currentDefinitions) return <Loading label="Loading definitions..." />;
 

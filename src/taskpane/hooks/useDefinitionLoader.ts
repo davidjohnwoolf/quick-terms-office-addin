@@ -4,7 +4,7 @@ import { Definition } from "../types";
 import { getParagraphDefinitions } from "../utils/getParagraphDefinitions";
 
 /** Loads definitions into context on mount and when document definitions change*/
-export const useDefinitionState = (): Definition[] => {
+export const useDefinitionLoader = (): Definition[] => {
   const [definitionState, setDefinitionState] = useState<Definition[]>(null);
 
   const handleLoad = async () => {
