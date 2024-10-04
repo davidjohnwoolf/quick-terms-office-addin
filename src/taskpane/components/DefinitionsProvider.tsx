@@ -10,7 +10,7 @@ export const DefinitionsContext = React.createContext<Definition[]>([] as Defini
 const DefinitionsProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [state, setState] = React.useState<Definition[]>(null);
 
-  useLoadDefinitionsEffect(setState);
+  useLoadDefinitionsEffect(state, setState);
 
   if (!state) return <Loading label="Loading definitions..." />;
 

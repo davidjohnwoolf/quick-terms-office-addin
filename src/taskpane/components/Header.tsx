@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Checkbox, makeStyles, SearchBox, tokens } from "@fluentui/react-components";
+import { Checkbox, Field, makeStyles, SearchBox, tokens } from "@fluentui/react-components";
 
-const useClasses = makeStyles({
+const useStyles = makeStyles({
   header: {
     background: tokens.colorNeutralBackground4Selected,
     display: "flex",
@@ -12,9 +12,9 @@ const useClasses = makeStyles({
     top: "0",
   },
   checkbox: {
-    alignSelf: "center",
     color: "#888",
   },
+  search: {},
 });
 
 interface HeaderProps {
@@ -24,18 +24,21 @@ interface HeaderProps {
 
 /** Header component with search bar */
 const Header: React.FC<HeaderProps> = ({ onShowAll, showAll }) => {
-  const classes = useClasses();
+  const styles = useStyles();
 
   return (
-    <header className={classes.header}>
-      <Checkbox
-        aria-label="Show all definitions no matter the document selection"
-        onChange={({ currentTarget }) => onShowAll(currentTarget.checked)}
-        checked={showAll}
-        className={classes.checkbox}
-        label="All"
-      />
-      <SearchBox placeholder="search definitions" appearance="filled-lighter" />
+    <header className={styles.header}>
+      <Field className={styles.checkbox}>
+        <Checkbox
+          aria-label="Show all definitions no matter the document selection"
+          onChange={({ currentTarget }) => onShowAll(currentTarget.checked)}
+          checked={showAll}
+          label="All"
+        />
+      </Field>
+      <Field className={styles.search}>
+        <SearchBox placeholder="search definitions" appearance="filled-lighter" />
+      </Field>
     </header>
   );
 };
