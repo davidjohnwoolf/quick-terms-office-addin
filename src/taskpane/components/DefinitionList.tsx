@@ -1,16 +1,14 @@
 import * as React from "react";
 import DefinitionListItem from "./DefinitionListItem";
-import { useDefinitions } from "../hooks/useDefinitions";
 import { selectParagraphById } from "../utils/selectParagraphById";
+import { Definition } from "../types";
 
 interface DefinitionListProps {
-  showAll: boolean;
+  definitions: Definition[];
 }
 
 /** Lists definitions either in current paragraph or all shown */
-const DefinitionList: React.FC<DefinitionListProps> = ({ showAll }) => {
-  const definitions = useDefinitions(showAll);
-
+const DefinitionList: React.FC<DefinitionListProps> = ({ definitions }) => {
   return (
     <section>
       {definitions.map(({ uniqueLocalId, term, description }) => {

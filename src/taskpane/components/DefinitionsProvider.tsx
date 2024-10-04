@@ -7,11 +7,12 @@ export const DefinitionsContext = React.createContext<Definition[]>([] as Defini
 
 /** Provides a read-only context for document definitions */
 const DefinitionsProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
+  // load definitions from document on mount and on document definition change
   const currentDefinitions = useDefinitionLoader();
 
-  if (!currentDefinitions) return <Loading label="Loading definitions..." />;
+  if (currentDefinitions === null) return <Loading label="Loading definitions..." />;
 
-  // no dispatch passed to context, which is intentional
+  // no dispatch passed to context, context value is readonly
   return <DefinitionsContext.Provider value={currentDefinitions}>{children}</DefinitionsContext.Provider>;
 };
 

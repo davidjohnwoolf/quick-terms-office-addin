@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
  * @returns currentSelection
  */
 export const useCurrentSelection = (): string => {
-  const [currentSelection, setCurrentSelection] = useState<string>();
+  const [currentSelection, setCurrentSelection] = useState<string>("");
 
   /** Async handler for updating the selection on document selection change */
   const handleSelection = async () => {
