@@ -1,13 +1,12 @@
-/* global Word, console */
-import { Dispatch, SetStateAction, useEffect } from "react";
+/* global Word */
+import { useEffect, useState } from "react";
 import { Definition } from "../types";
 import { getParagraphDefinitions } from "../utils/getParagraphDefinitions";
 
 /** Loads definitions into context on mount and when document definitions change*/
-export const useLoadDefinitionsEffect = (
-  prev: Definition[],
-  setDefinitions: Dispatch<SetStateAction<Definition[]>>
-) => {
+export const useDefinitionState = (): Definition[] => {
+  const [definitionState, setDefinitionState] = useState<Definition[]>(null);
+
   const handleLoad = async () => {
     await Word.run(async ({ document, sync }) => {
       const paragraphs = document.body.paragraphs;
@@ -17,7 +16,7 @@ export const useLoadDefinitionsEffect = (
 
       // set definitions from document paragraphs
       const definitionsFromParagraphs = getParagraphDefinitions(paragraphs.items);
-      setDefinitions(definitionsFromParagraphs);
+      setDefinitionState(definitionsFromParagraphs);
     });
   };
 
@@ -33,15 +32,16 @@ export const useLoadDefinitionsEffect = (
         document.onParagraphChanged.add(async (event) => {
           await Word.run(async (context) => {
             await context.sync();
-            console.log(event.uniqueLocalIds);
 
-            // if existing definitions match an id from the changed ones
-            if (prev.some(({ uniqueLocalId }) => event.uniqueLocalIds.includes(uniqueLocalId))) {
+            // if existing definitions match an id from the changed ones, reload definitions
+            if (definitionState.some(({ uniqueLocalId }) => event.uniqueLocalIds.includes(uniqueLocalId))) {
               handleLoad();
             }
           });
         });
       });
     })();
-  }, [prev]);
+  }, [definitionState]);
+
+  return definitionState;
 };
