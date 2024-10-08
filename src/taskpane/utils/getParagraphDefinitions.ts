@@ -9,6 +9,7 @@ export const getParagraphDefinitions = (paragraphItems: Word.Paragraph[]): Defin
     if (!isDefinition(text)) return prev;
 
     // extract the term and description from the paragraph text
+    // note: Word paragraph text excludes spaces before and after
     const [term, description] = text.slice(1).split(`”`) as [string, string];
 
     return [...prev, { text, uniqueLocalId, term, description }];

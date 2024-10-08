@@ -1,5 +1,11 @@
 import * as React from "react";
-import { Spinner } from "@fluentui/react-components";
+import { makeStyles, Spinner } from "@fluentui/react-components";
+
+const useStyles = makeStyles({
+  loading: {
+    background: "none",
+  },
+});
 
 interface LoadingProps {
   label?: string;
@@ -7,8 +13,14 @@ interface LoadingProps {
 
 /** @todo set strings etc (ie "Loading...") in a resource file / config */
 /** Loading spinner component */
-const Loading: React.FC<LoadingProps> = ({ label }) => (
-  <Spinner size="small" labelPosition="below" label={label || "Loading..."} />
-);
+const Loading: React.FC<LoadingProps> = ({ label }) => {
+  const styles = useStyles();
+
+  return (
+    <section className={styles.loading}>
+      <Spinner size="small" labelPosition="below" label={label || "Loading..."} />
+    </section>
+  );
+};
 
 export default Loading;
