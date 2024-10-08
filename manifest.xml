@@ -4,7 +4,7 @@
   <Version>1.0.0.0</Version>
   <ProviderName>Contoso</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Show Definitions"/>
+  <DisplayName DefaultValue="Quick Terms"/>
   <Description DefaultValue="Easily reference definitions as you go!"/>
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
@@ -72,13 +72,13 @@
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GetStarted.Title" DefaultValue="Definitions are literally the best."/>
+        <bt:String id="GetStarted.Title" DefaultValue="Quick Terms Taskpane"/>
         <bt:String id="CommandsGroup.Label" DefaultValue="Commands Group"/>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Definitions"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Quick Terms"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="Click the 'Show Definitions' taskbar for a really good time!"/>
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Really, click it."/>
+        <bt:String id="GetStarted.Description" DefaultValue="Click the 'Quick Terms' taskpane to get started!"/>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Quick Terms Taskpane"/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
