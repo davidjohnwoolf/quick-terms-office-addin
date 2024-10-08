@@ -1,9 +1,10 @@
 import * as React from "react";
-import { makeStyles, Spinner } from "@fluentui/react-components";
+import { makeStyles, Spinner, tokens } from "@fluentui/react-components";
 
 const useStyles = makeStyles({
   loading: {
-    background: "none",
+    paddingTop: tokens.spacingHorizontalS,
+    paddingBottom: tokens.spacingHorizontalS,
   },
 });
 
